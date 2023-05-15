@@ -32,7 +32,7 @@ async function SwitchRegion(title, url, body) {
 		} else if (body.code === -404 || chtMatch) {
 			if (current != DF) select = { policy: DIRECT, mode: '后备' };
 		} else if (current != CN) {
-			select = { policy: CN, mode: '直连' };
+			select = { policy: CN, mode: 'DIRECT' };
 		}
 		if ($.isQuanX && current === 'direct' && select.policy === 'DIRECT') {
 			select = {}; //prevent loopback in some cases
