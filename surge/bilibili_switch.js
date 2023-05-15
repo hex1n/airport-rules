@@ -30,9 +30,9 @@ async function SwitchRegion(title, url, body) {
 		} else if (/\u53f0[\u4e00-\u9fa5]+\u5340|%20%E5%8F%B0&/.test(title || url)) {
 			if (current != TW) select = { policy: TW, mode: '台湾' };
 		} else if (body.code === -404 || chtMatch) {
-			if (current != DF) select = { policy: DIRECT, mode: '后备' };
+			if (current != DF) select = { policy: Proxy, mode: 'DIRECT' };
 		} else if (current != CN) {
-			select = { policy: CN, mode: 'DIRECT' };
+			select = { policy: Proxy, mode: 'DIRECT' };
 		}
 		if ($.isQuanX && current === 'direct' && select.policy === 'DIRECT') {
 			select = {}; //prevent loopback in some cases
