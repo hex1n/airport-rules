@@ -14,10 +14,10 @@ let run = EnvInfo();
 
 async function SwitchRegion(title, url, body) {
 	const Group = $.read('BiliArea_Policy') || 'Bilibili'; //Your blibli policy group name.
-	const CN = $.read('BiliArea_CN') || 'DIRECT'; //Your China sub-policy name.
+	const CN = $.read('BiliArea_CN') || 'Direct'; //Your China sub-policy name.
 	const TW = $.read('BiliArea_TW') || 'TW'; //Your Taiwan sub-policy name.
 	const HK = $.read('BiliArea_HK') || 'HK'; //Your HongKong sub-policy name.
-	const DF = $.read('BiliArea_DF') || 'DIRECT'; //Sub-policy name used after region is blocked(e.g. url 404)
+	const DF = $.read('BiliArea_DF') || 'Direct'; //Sub-policy name used after region is blocked(e.g. url 404)
 	const off = $.read('BiliArea_disabled') || ''; //WiFi blacklist(disable region change), separated by commas.
 	const current = await $.getPolicy(Group);
 	const area = (() => {
@@ -30,9 +30,9 @@ async function SwitchRegion(title, url, body) {
 		} else if (/\u53f0[\u4e00-\u9fa5]+\u5340|%20%E5%8F%B0&/.test(title || url)) {
 			if (current != TW) select = { policy: TW, mode: '台湾' };
 		} else if (body.code === -404 || chtMatch) {
-			if (current != DF) select = { policy: Proxy, mode: 'DIRECT' };
+			if (current != DF) select = { policy: Final, mode: 'Direct' };
 		} else if (current != CN) {
-			select = { policy: Proxy, mode: 'DIRECT' };
+			select = { policy: Final, mode: 'Direct' };
 		}
 		if ($.isQuanX && current === 'direct' && select.policy === 'DIRECT') {
 			select = {}; //prevent loopback in some cases
