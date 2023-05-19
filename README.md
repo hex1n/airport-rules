@@ -1,2 +1,2 @@
 # airport-rules
-✈️规则
+自用
